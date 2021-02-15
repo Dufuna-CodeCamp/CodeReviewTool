@@ -5,7 +5,7 @@ const { GitHub } = require("@actions/github/lib/utils");
 async function run() {
     try {
         const status = core.getInput("status");
-        const token = core.getInput("github-token", { required: true });
+        const token = core.getInput("repo-token");
 
         const pr = github.context.payload;
 
@@ -13,7 +13,7 @@ async function run() {
             throw new Error("Event payload is missing `pull_request`");
         }
 
-        const client = new github.GitHub(token);
+        const client = github.getOctokit(token);
         core.debug(`Checking review for pull request #${pr.number}`);
 
         if (status == 'PASS') {

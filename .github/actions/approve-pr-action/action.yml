@@ -7,15 +7,15 @@ branding:
   color: 'green'
 
 inputs:
-  
-  status:
-    description: "result from parsing log file, either PASS or FAIL"
-    required: true
-  
-  github-token:
+
+  repo-token:
     description: "The GITHUB_TOKEN secret"
     required: true
 
+  status:
+    description: "result from parsing log file, either PASS or FAIL"
+    required: true
+    
 runs:
   using: 'node12'
   main: 'dist/index.js'

@@ -33,5 +33,5 @@ jobs:
     - name: automate approval action
       uses: ./.github/actions/approve-pr-action
       with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
         status: ${{ steps.stats.outputs.stats-output }}
-        github-token: ${{ secrets.GITHUB_TOKEN }}
