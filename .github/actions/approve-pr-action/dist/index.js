@@ -39,6 +39,8 @@ async function run() {
                 event: "REQUEST_CHANGES",
                 comments: [{
                     path: "tests/logfile.txt",
+                    position: 1,
+                    line: 1,
                     body: "Test failed"
                 }]
             });
