@@ -1,10 +1,7 @@
 name: Code Review
 
 # Controls when the action will run. 
-on: 
-  push:
-    branches:
-      - master
+on:
   pull_request:
     branches:
       - master
@@ -34,7 +31,7 @@ jobs:
         log-file-content: ${{ steps.read-log.outputs.log-file-content }}
 
     - name: automate approval action
-      uses: hmarr/auto-approve-action@v2.0.0
+      uses: ./.github/actions/approve-pr-action
       with:
         status: ${{ steps.stats.outputs.stats-output }}
-      if: status == "PASS"
+        github-token: ${{ secrets.GITHUB_TOKEN }}

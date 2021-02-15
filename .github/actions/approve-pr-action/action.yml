@@ -1,0 +1,21 @@
+name: approve or decline pr action
+
+description: "approve or decline a pr based on status output from previous action"
+
+branding:
+  icon: 'git-merge'
+  color: 'green'
+
+inputs:
+  
+  status:
+    description: "result from parsing log file, either PASS or FAIL"
+    required: true
+  
+  github-token:
+    description: "The GITHUB_TOKEN secret"
+    required: true
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
