@@ -38,8 +38,7 @@ async function run() {
                 pull_number: pr.number,
                 event: "REQUEST_CHANGES",
                 comments: [{
-                    path: null,
-                    position: null,
+                    path: "tests/logfile.txt",
                     body: "Test failed"
                 }]
             });
