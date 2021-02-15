@@ -4,10 +4,10 @@ name: Code Review
 on: 
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
       uses: ./.github/actions/read-log-action
       id: read-log
       with:
-        path-to-log-file: "../../tests/logfile.txt"
+        path-to-log-file: "tests/logfile.txt"
 
     - name: calculate-stats-action
       uses: ./.github/actions/calculate-stats-action

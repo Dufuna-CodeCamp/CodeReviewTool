@@ -8,6 +8,7 @@ module.exports =
 const core = __nccwpck_require__(46);
 const fs = __nccwpck_require__(747);
 
+
 try {
     const fileContent = core.getInput("log-file-content");
     const content = JSON.parse(fileContent);

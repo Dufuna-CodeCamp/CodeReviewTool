@@ -6,7 +6,7 @@ inputs:
   path-to-log-file:
     description: "this is the path to the uploaded log file which contains test results"
     required: true
-    default: "../../../tests/logfile.txt"
+    default: "tests/logfile.txt"
 
 outputs:
   log-file-content:
