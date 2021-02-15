@@ -31,6 +31,8 @@ async function run() {
                 pull_number: pr.number,
                 event: "REQUEST_CHANGES",
                 comments: [{
+                    path: null,
+                    position: null,
                     body: "Test failed"
                 }]
             });
