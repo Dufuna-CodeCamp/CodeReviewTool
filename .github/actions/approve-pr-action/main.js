@@ -30,9 +30,9 @@ async function run() {
                 repo: github.context.repo.repo,
                 pull_number: pr.number,
                 event: "REQUEST_CHANGES",
-                comments: {
+                comments: [{
                     body: "Test failed"
-                }
+                }]
             });
             core.debug(`Not approv`)
         }
