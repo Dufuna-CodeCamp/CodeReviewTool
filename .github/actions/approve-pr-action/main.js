@@ -29,7 +29,10 @@ async function run() {
                 owner: github.context.repo.owner,
                 repo: github.context.repo.repo,
                 pull_number: pr.number,
-                event: "REQUEST_CHANGES"
+                event: "REQUEST_CHANGES",
+                comments: {
+                    body: "Test failed"
+                }
             });
             core.debug(`Not approv`)
         }
