@@ -1,12 +1,11 @@
 name: CodeCamp Approval Workflow
-on: pull_request_review
+on: pull_request_target
+
 jobs:
-  labelWhenApproved:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Automate Approval
-        uses: pullreminders/label-when-approved-action@v1.0.7
-        env:
-          APPROVAL: "1"
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ADD_LABEL: "approved"
+        uses: hmarr/auto-approve-action@v2.0.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
