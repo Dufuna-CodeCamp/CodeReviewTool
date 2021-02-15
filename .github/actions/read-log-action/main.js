@@ -7,8 +7,7 @@ function getContent() {
         const filePath = core.getInput('path-to-log-file');
 
         fs.readFile(filePath, 'utf8', (error, data) => {
-            console.log(data)
-            core.setOutput("log-file-content", content)
+            core.setOutput("log-file-content", data)
         });
     
     } catch(error) {
