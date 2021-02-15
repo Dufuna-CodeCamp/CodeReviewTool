@@ -20,7 +20,7 @@ async function run() {
             throw new Error("Event payload is missing `pull_request`");
         }
 
-        const client = new GitHub(token);
+        const client = new github.GitHub(token);
         core.debug(`Checking review for pull request #${pr.number}`);
 
         if (status == 'PASS') {
