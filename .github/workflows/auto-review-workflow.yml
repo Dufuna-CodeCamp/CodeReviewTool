@@ -2,6 +2,9 @@ name: Code Review
 
 # Controls when the action will run. 
 on: 
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
