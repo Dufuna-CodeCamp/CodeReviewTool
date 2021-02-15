@@ -1,0 +1,120 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 0,
+    "pending": 0,
+    "failures": 3,
+    "start": "2021-02-15T14:31:28.062Z",
+    "end": "2021-02-15T14:31:29.859Z",
+    "duration": 1797
+  },
+  "tests": [
+    {
+      "title": "Title Test Case",
+      "fullTitle": "Test Suite Title Test Case",
+      "file": "/Users/folashadedaniel/Desktop/dufuna/dufuna-testing/example-test.js",
+      "duration": 1777,
+      "currentRetry": 0,
+      "err": {
+        "stack": "AssertionError [ERR_ASSERTION]: [object Promise] Not equal\n    at Context.<anonymous> (Desktop/dufuna/dufuna-testing/example-test.js:63:16)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)",
+        "message": "[object Promise] Not equal",
+        "generatedMessage": false,
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "actual": {},
+        "expected": "Taries Empire",
+        "operator": "strictEqual"
+      }
+    },
+    {
+      "title": "Cost Test Case",
+      "fullTitle": "Test Suite Cost Test Case",
+      "file": "/Users/folashadedaniel/Desktop/dufuna/dufuna-testing/example-test.js",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {
+        "stack": "AssertionError [ERR_ASSERTION]: Not equal\n    at Context.<anonymous> (Desktop/dufuna/dufuna-testing/example-test.js:68:16)\n    at processImmediate (internal/timers.js:456:21)",
+        "message": "Not equal",
+        "generatedMessage": false,
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "actual": {},
+        "expected": "187.5",
+        "operator": "strictEqual"
+      }
+    },
+    {
+      "title": "Cost Test Case",
+      "fullTitle": "Test Suite Cost Test Case",
+      "file": "/Users/folashadedaniel/Desktop/dufuna/dufuna-testing/example-test.js",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {
+        "stack": "AssertionError [ERR_ASSERTION]: Not equal\n    at Context.<anonymous> (Desktop/dufuna/dufuna-testing/example-test.js:73:16)\n    at processImmediate (internal/timers.js:456:21)",
+        "message": "Not equal",
+        "generatedMessage": false,
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "actual": {},
+        "expected": "187.5",
+        "operator": "strictEqual"
+      }
+    }
+  ],
+  "pending": [],
+  "failures": [
+    {
+      "title": "Title Test Case",
+      "fullTitle": "Test Suite Title Test Case",
+      "file": "/Users/folashadedaniel/Desktop/dufuna/dufuna-testing/example-test.js",
+      "duration": 1777,
+      "currentRetry": 0,
+      "err": {
+        "stack": "AssertionError [ERR_ASSERTION]: [object Promise] Not equal\n    at Context.<anonymous> (Desktop/dufuna/dufuna-testing/example-test.js:63:16)\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)",
+        "message": "[object Promise] Not equal",
+        "generatedMessage": false,
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "actual": {},
+        "expected": "Taries Empire",
+        "operator": "strictEqual"
+      }
+    },
+    {
+      "title": "Cost Test Case",
+      "fullTitle": "Test Suite Cost Test Case",
+      "file": "/Users/folashadedaniel/Desktop/dufuna/dufuna-testing/example-test.js",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {
+        "stack": "AssertionError [ERR_ASSERTION]: Not equal\n    at Context.<anonymous> (Desktop/dufuna/dufuna-testing/example-test.js:68:16)\n    at processImmediate (internal/timers.js:456:21)",
+        "message": "Not equal",
+        "generatedMessage": false,
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "actual": {},
+        "expected": "187.5",
+        "operator": "strictEqual"
+      }
+    },
+    {
+      "title": "Cost Test Case",
+      "fullTitle": "Test Suite Cost Test Case",
+      "file": "/Users/folashadedaniel/Desktop/dufuna/dufuna-testing/example-test.js",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {
+        "stack": "AssertionError [ERR_ASSERTION]: Not equal\n    at Context.<anonymous> (Desktop/dufuna/dufuna-testing/example-test.js:73:16)\n    at processImmediate (internal/timers.js:456:21)",
+        "message": "Not equal",
+        "generatedMessage": false,
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "actual": {},
+        "expected": "187.5",
+        "operator": "strictEqual"
+      }
+    }
+  ],
+  "passes": []
+}
