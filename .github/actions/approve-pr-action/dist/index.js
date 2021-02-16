@@ -36,15 +36,8 @@ async function run() {
                 owner: github.context.repo.owner,
                 repo: github.context.repo.repo,
                 pull_number: pr.number,
-                event: "REQUEST_CHANGES",
-                comments: [{
-                    path: "tests/logfile.txt",
-                    body: "Test failed",
-                    start_line: 1,
-                    start_side: "RIGHT",
-                    line: 2,
-                    side: "RIGHT"
-                }]
+                body: "This pr is not approved",
+                event: "REQUEST_CHANGES"
             });
             core.debug(`Not approv`)
         }
