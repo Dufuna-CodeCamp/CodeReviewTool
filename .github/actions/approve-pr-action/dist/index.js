@@ -41,7 +41,8 @@ async function run() {
                     path: "tests/logfile.txt",
                     body: "Test failed",
                     start_line: 1,
-                    line:1,
+                    start_side: "RIGHT",
+                    line: 2,
                     side: "RIGHT"
                 }]
             });
