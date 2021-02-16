@@ -39,7 +39,9 @@ async function run() {
                 event: "REQUEST_CHANGES",
                 comments: [{
                     path: "tests/logfile.txt",
-                    body: "Test failed"
+                    body: "Test failed",
+                    line: 4,
+                    side: "RIGHT"
                 }]
             });
             core.debug(`Not approv`)
