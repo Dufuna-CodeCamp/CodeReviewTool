@@ -33,7 +33,8 @@ async function run() {
                 comments: [{
                     path: "tests/logfile.txt",
                     body: "Test failed",
-                    line: 4,
+                    start_line: 1,
+                    line:1,
                     side: "RIGHT"
                 }]
             });
