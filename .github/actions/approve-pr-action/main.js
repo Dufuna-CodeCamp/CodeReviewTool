@@ -22,19 +22,20 @@ async function run() {
         core.debug(`Checking review for pull request #${pr.number}`);
 
         if (status == 'PASS') {
-            await octokitClient.pulls.createReview({
-                owner: github.context.repo.owner,
-                repo: github.context.repo.repo,
-                pull_number: pr.number,
-                event: "APPROVE"
-            });
+            // await octokitClient.pulls.createReview({
+            //     owner: github.context.repo.owner,
+            //     repo: github.context.repo.repo,
+            //     pull_number: pr.number,
+            //     event: "APPROVE"
+            // });
+            core.debug(`Approved pull request #${pr.number}`);
+
             await octokitClient.pulls.merge({
                 owner: github.context.repo.owner,
                 repo: github.context.repo.repo,
                 pull_number: pr.number,
                 merge_method: "merge"
             })
-            core.debug(`Approved pull request #${pr.number}`);
         } else {
             await octokitClient.pulls.createReview({
                 owner: github.context.repo.owner,
