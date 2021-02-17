@@ -9,10 +9,15 @@ const core = __nccwpck_require__(46);
 const github = __nccwpck_require__(971);
 const { GitHub } = __nccwpck_require__(506);
 
+var status;
+var token;
+var octokitClient;
+
+
 async function run() {
     try {
-        const status = core.getInput("status");
-        const token = core.getInput("repo-token");
+        status = core.getInput("status");
+        token = core.getInput("repo-token");
 
         const pr = github.context.payload;
 
@@ -20,19 +25,25 @@ async function run() {
             throw new Error("Event payload is missing `pull_request`");
         }
 
-        const client = github.getOctokit(token);
+        const octokitClient = github.getOctokit(token);
         core.debug(`Checking review for pull request #${pr.number}`);
 
         if (status == 'PASS') {
-            await client.pulls.createReview({
+            await octokitClient.pulls.createReview({
                 owner: github.context.repo.owner,
                 repo: github.context.repo.repo,
                 pull_number: pr.number,
                 event: "APPROVE"
             });
+            await octokitClient.pulls.merge({
+                owner: github.context.repo.owner,
+                repo: github.context.repo.repo,
+                pull_number: pr.number,
+                merge_method: "merge"
+            })
             core.debug(`Approved pull request #${pr.number}`);
         } else {
-            await client.pulls.createReview({
+            await octokitClient.pulls.createReview({
                 owner: github.context.repo.owner,
                 repo: github.context.repo.repo,
                 pull_number: pr.number,
