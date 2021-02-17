@@ -2,9 +2,9 @@
   "stats": {
     "suites": 1,
     "tests": 2,
-    "passes": 1,
+    "passes": 2,
     "pending": 0,
-    "failures": 1,
+    "failures": 0,
     "start": "2021-02-17T15:37:51.129Z",
     "end": "2021-02-17T15:37:53.144Z",
     "duration": 2015
