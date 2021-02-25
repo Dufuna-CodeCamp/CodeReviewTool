@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2021-02-23T12:48:57.859Z",
-    "end": "2021-02-23T12:48:59.657Z",
-    "duration": 1798,
+    "start": "2021-02-25T14:41:44.209Z",
+    "end": "2021-02-25T14:41:46.038Z",
+    "duration": 1829,
     "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "e39ec646-b7c5-4f35-aa6f-97a7bf9a6513",
+      "uuid": "e337e488-a4bf-4bb0-98c3-226d8811b610",
       "title": "",
       "fullFile": "",
       "file": "",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "947fc278-de1b-4d55-8684-f70cedefb52b",
+          "uuid": "e8ed468c-97e0-4c08-abb5-a4b6247a5a54",
           "title": "Test Suite",
           "fullFile": "/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/tests/example-test.js",
           "file": "/Desktop/dufuna/CodeReviewTool/tests/example-test.js",
@@ -36,7 +36,7 @@
               "title": "\"before all\" hook in \"Test Suite\"",
               "fullTitle": "Test Suite \"before all\" hook in \"Test Suite\"",
               "timedOut": false,
-              "duration": 1,
+              "duration": 0,
               "state": null,
               "speed": null,
               "pass": false,
@@ -45,8 +45,8 @@
               "context": null,
               "code": "pageUrl = 'file:///Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/submissions/index.html'\ndriver.get(pageUrl);",
               "err": {},
-              "uuid": "008db458-3237-4976-ab2c-27c2eab62682",
-              "parentUUID": "947fc278-de1b-4d55-8684-f70cedefb52b",
+              "uuid": "4ef47eaf-ac15-4788-84ed-5568948a34a4",
+              "parentUUID": "e8ed468c-97e0-4c08-abb5-a4b6247a5a54",
               "isHook": true,
               "skipped": false
             }
@@ -65,8 +65,8 @@
               "context": null,
               "code": "driver.quit();",
               "err": {},
-              "uuid": "279a6229-63d2-4cf1-9104-1c46eeb5adc0",
-              "parentUUID": "947fc278-de1b-4d55-8684-f70cedefb52b",
+              "uuid": "33806b6f-304f-4271-a01b-125bc0d545ad",
+              "parentUUID": "e8ed468c-97e0-4c08-abb5-a4b6247a5a54",
               "isHook": true,
               "skipped": false
             }
@@ -76,7 +76,7 @@
               "title": "test case: assert image amount is 2",
               "fullTitle": "Test Suite test case: assert image amount is 2",
               "timedOut": false,
-              "duration": 1788,
+              "duration": 1817,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -85,8 +85,8 @@
               "context": null,
               "code": "const images = (await driver).findElements(webdriver.By.css('img'));\nvar size = (await images).length\n\nassert.strictEqual(size, 2, `Amount of images on the page not equal to 2`);",
               "err": {},
-              "uuid": "c09c608a-354d-4bc6-8c50-043812a29a50",
-              "parentUUID": "947fc278-de1b-4d55-8684-f70cedefb52b",
+              "uuid": "d4880626-03c5-42c8-aaf7-880e34e8c6b0",
+              "parentUUID": "e8ed468c-97e0-4c08-abb5-a4b6247a5a54",
               "isHook": false,
               "skipped": false
             },
@@ -103,21 +103,21 @@
               "context": null,
               "code": "const list = (await driver).findElements(webdriver.By.css('ol'));\nassert.notStrictEqual(list.length, 0, 'No ordered list on this page');",
               "err": {},
-              "uuid": "96cc4490-ccdd-4755-a352-7599642d99f5",
-              "parentUUID": "947fc278-de1b-4d55-8684-f70cedefb52b",
+              "uuid": "cb6b3a92-f619-4047-bdab-fbd00cc09cb5",
+              "parentUUID": "e8ed468c-97e0-4c08-abb5-a4b6247a5a54",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "c09c608a-354d-4bc6-8c50-043812a29a50",
-            "96cc4490-ccdd-4755-a352-7599642d99f5"
+            "d4880626-03c5-42c8-aaf7-880e34e8c6b0",
+            "cb6b3a92-f619-4047-bdab-fbd00cc09cb5"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1788,
+          "duration": 1817,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -151,7 +151,7 @@
     },
     "marge": {
       "options": {
-        "reportDir": "/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/setup/../tests",
+        "reportDir": "/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/tests/setup/../../tests",
         "reportFilename": "logfile",
         "quiet": "true"
       },

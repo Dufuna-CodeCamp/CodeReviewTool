@@ -2,3 +2,4 @@
 *node_modules
 tests/assets
 tests/logfile.html
+tests/package-lock.json

@@ -47,8 +47,6 @@ fi
 
 
 
-
-
 # Chromedriver check & Installation
 chromedriver_wc=`ls /usr/local/bin/ | grep -c chromedriver`
 if [[ $chromedriver_wc > 0 ]]

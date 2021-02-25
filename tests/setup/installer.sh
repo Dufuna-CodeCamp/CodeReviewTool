@@ -1,6 +1,7 @@
 #!/bin/bash
 
-project_working_directory=$PWD/..
+project_working_directory=$PWD/../..
+test_folder=$project_working_directory/tests
 
 cd ~/
 
@@ -30,8 +31,12 @@ fi
 
 set +ex
 
+cd $test_folder
+
 # Selenium web-driver check & Installation
 selenium_wc=`npm ls --depth=0 | grep -c selenium-webdriver`
+
+cd ~/
 
 set -e +x
 
@@ -39,7 +44,7 @@ if [[ $selenium_wc > 0 ]]
 then
     echo "selenium-webdriver is available"
 else
-    sudo npm install selenium-webdriver
+    sudo npm install --prefix $test_folder selenium-webdriver
 fi
 
 set +ex
