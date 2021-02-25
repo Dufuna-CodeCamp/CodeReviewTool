@@ -26,7 +26,7 @@ if [[ $node_version == v* ]]
 then
     echo "node is available"
 else
-    sudo brew install node
+    brew install node
 fi
 
 set +ex
