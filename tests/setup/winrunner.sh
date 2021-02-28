@@ -30,7 +30,7 @@ then
     echo "node is available"
 else
     # download installer and install .exe file
-
+    set +ex
     # check if pc_bit_size variable is empty, if it is not, then it is a 64 bit PC
     if [ -z "$pc_bit_size"]
     then
