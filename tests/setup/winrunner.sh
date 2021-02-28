@@ -1,17 +1,28 @@
 #!/bin/bash
 
-# exit if non-zero status is returned
-set -ex
-
-project_working_directory=$PWD/..
+project_working_directory=$PWD/../..
+test_folder=$project_working_directory/tests
 
 cd ~/
 
+set -e +x
+
 chrome_driver_version=`curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE`
-path_to_driver=/usr/local/bin
+
+set +ex
+
+path_to_driver=$home/../../../
 node_version=$(node -v)
 mocha_version=$(mocha --version)
 pc_bit_size=$(systeminfo | findstr x64)
+
+NONE='\033[00m'
+BOLD='\x1b[1m'
+UNDERLINE='\033[4m'
+ITALIC='\x1b[3m'
+
+# exit if non-zero status is returned
+set -e +x
 
 # Node check & Installation
 if [[ $node_version == v* ]]
@@ -29,46 +40,40 @@ else
     fi
 
     # install the exe file
-    Start-Process -Wait -FilePath ~/node.exe -Argument "/silent" -PassThru
+    Start-Process -FilePath $home\node.msi -ArgumentList '/qb! /norestart' -Wait -PassThru
 fi
+
+set +ex
+
+cd $test_folder
 
 # Selenium web-driver check & Installation
 selenium_wc=`npm ls --depth=0 | grep -c selenium-webdriver`
+
+cd ~/
+
+set -e +x
+
 if [[ $selenium_wc > 0 ]]
 then
     echo "selenium-webdriver is available"
 else
-    npm install -save selenium-webdriver
+    npm install --prefix $test_folder selenium-webdriver
 fi
 
+set +ex
 
+chromedriver_wc=`ls $path_to_driver/Program Files (x86) | findstr chromedriver`
 
-
-
-
-
-# Chromedriver check & Installation
-chromedriver_wc=`ls /usr/local/bin/ | grep -c chromedriver`
-if [[ $chromedriver_wc > 0 ]]
+# is chromedriver available?
+if [ -z "$chromedriver_wc"]
 then
-    echo "chromedriver is available"
+    curl -S -o ~/chromedriver_win32.zip https://chromedriver.storage.googleapis.com/$chrome_driver_version/chromedriver_win32.zip
+    Expand-Archive -Path '~/chromedriver_win32.zip' -DestinationPath '$path_to_driver/Program Files (x86)'
+    Remove-Item '~/chromedriver_win32.zip'
+    $env:Path += ";$path_to_driver/Program Files (x86)/chromedriver_win32"
 else
-    driver_file_name=''
-    if [[ $pc_bit_size == x86_64 ]]
-    then
-        wget https://chromedriver.storage.googleapis.com/$chrome_driver_version/chromedriver_linux64.zip -P ~/
-        driver_file_name="chromedriver_linux64.zip"
-    else
-        wget https://chromedriver.storage.googleapis.com/$chrome_driver_version/chromedriver_linux32.zip -P ~/
-        driver_file_name="chromedriver_linux32.zip"
-    fi
-    unzip ~/$driver_file_name -d ~/
-    rm ~/$driver_file_name
-
-    sudo mv -f ~/chromedriver $path_to_driver/chromedriver
-    sudo chown root $path_to_driver/chromedriver
-    sudo chmod +x $path_to_driver/chromedriver
-    export PATH=$PATH:$path_to_driver
+    echo "chromedriver is available"
 fi
 
 # Mocha check & Installation
@@ -76,50 +81,14 @@ if [[ $mocha_version =~ ^[0-9] ]]
 then
     echo "mocha is available"
 else
-    sudo npm install --global mocha
+    npm install --global mocha
+    npm install --global mochawesome
 fi
 
 # Run Tests
-mocha ~/Desktop/dufuna-testing/example-test.js | tee ~/Desktop/dufuna-testing/file.txt
 
+customReportDir=$project_working_directory/tests
+customReportFilename=logfile
 
-
-
-
-# install selenium-webdriver
-#npm install -save selenium-webdriver
-
-# download chromedriver for Windows
-# wget https://chromedriver.storage.googleapis.com/$chrome_driver_version/chromedriver_win32.zip -P ~/
-
-# download chromedriver for Mac - 32bits
-# wget https://chromedriver.storage.googleapis.com/$chrome_driver_version/chromedriver_mac32.zip -P ~/
-
-# download chromedriver for Mac - 64bits
-#curl -S -o ~/chromedriver_mac64.zip https://chromedriver.storage.googleapis.com/$chrome_driver_version/chromedriver_mac64.zip
-#unzip ~/chromedriver_mac64.zip -d ~/
-#rm ~/chromedriver_mac64.zip
-
-#sudo mv -f ~/chromedriver $path_to_driver/chromedriver
-#sudo chown root $path_to_driver/chromedriver
-#sudo chmod +x /usr/local/bin/chromedriver
-#export PATH=$PATH:$path_to_driver
-
-# Mocha and Chai Setup
-
-#sudo npm install --global mocha
-#npm install chai
-
-
-# run tests
-mocha ~/Desktop/dufuna-testing/example-test.js | tee ~/Desktop/dufuna-testing/file.txt
-
-
-
-# npm check & Installation
-# if [[ $npm_version =~ ^[0-9] ]]
-# then
-#     echo "npm is available"
-# else
-#     sudo apt install npm
-# fi
+echo -e "${ITALIC}visit${NONE} ${BOLD}${UNDERLINE}$project_working_directory/tests/logfile.html${NONE} in your browser to see test reports"
+mocha $project_working_directory/tests/example-test.js --reporter mochawesome --reporter-options reportDir=$customReportDir,reportFilename=$customReportFilename,quiet=true
