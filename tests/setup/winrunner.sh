@@ -40,7 +40,7 @@ else
     fi
 
     # install the exe file
-    Start-Process -FilePath $home\node.msi -ArgumentList '/qb! /norestart' -Wait -PassThru
+    Start-Process -FilePath $home/node.msi -ArgumentList '/qb! /norestart' -Wait -PassThru
 fi
 
 set +ex
