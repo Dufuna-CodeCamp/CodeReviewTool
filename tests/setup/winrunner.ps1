@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# -x -> print command as it is being run
+# -e -> terminate if a commands' exit code is non-zero
+
 project_working_directory=$PWD/../..
 test_folder=$project_working_directory/tests
 
