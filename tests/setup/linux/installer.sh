@@ -1,6 +1,6 @@
 #!/bin/bash
 
-project_working_directory=$PWD/../..
+project_working_directory=$PWD/../../..
 test_folder=$project_working_directory/tests
 
 cd ~/
