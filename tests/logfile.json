@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2021-02-25T14:41:44.209Z",
-    "end": "2021-02-25T14:41:46.038Z",
-    "duration": 1829,
+    "start": "2021-03-04T11:36:05.909Z",
+    "end": "2021-03-04T11:36:06.557Z",
+    "duration": 648,
     "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "e337e488-a4bf-4bb0-98c3-226d8811b610",
+      "uuid": "41a19ff9-2aa5-4dc8-9b87-6d4cb2d87f1b",
       "title": "",
       "fullFile": "",
       "file": "",
@@ -27,10 +27,10 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "e8ed468c-97e0-4c08-abb5-a4b6247a5a54",
+          "uuid": "c28f2e32-d26f-470f-b8a3-c4b227f69f91",
           "title": "Test Suite",
-          "fullFile": "/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/tests/example-test.js",
-          "file": "/Desktop/dufuna/CodeReviewTool/tests/example-test.js",
+          "fullFile": "C:\\Users\\COTTA&CUSH\\Desktop\\dufuna\\CodeReviewTool\\tests\\example-test.js",
+          "file": "C:\\Users\\COTTA&CUSH\\Desktop\\dufuna\\CodeReviewTool\\tests\\example-test.js",
           "beforeHooks": [
             {
               "title": "\"before all\" hook in \"Test Suite\"",
@@ -45,8 +45,8 @@
               "context": null,
               "code": "pageUrl = 'file:///Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/submissions/index.html'\ndriver.get(pageUrl);",
               "err": {},
-              "uuid": "4ef47eaf-ac15-4788-84ed-5568948a34a4",
-              "parentUUID": "e8ed468c-97e0-4c08-abb5-a4b6247a5a54",
+              "uuid": "04421575-1257-45e5-976f-602aef9cfff4",
+              "parentUUID": "c28f2e32-d26f-470f-b8a3-c4b227f69f91",
               "isHook": true,
               "skipped": false
             }
@@ -56,7 +56,7 @@
               "title": "\"after all\" hook in \"Test Suite\"",
               "fullTitle": "Test Suite \"after all\" hook in \"Test Suite\"",
               "timedOut": false,
-              "duration": 0,
+              "duration": 1,
               "state": null,
               "speed": null,
               "pass": false,
@@ -65,8 +65,8 @@
               "context": null,
               "code": "driver.quit();",
               "err": {},
-              "uuid": "33806b6f-304f-4271-a01b-125bc0d545ad",
-              "parentUUID": "e8ed468c-97e0-4c08-abb5-a4b6247a5a54",
+              "uuid": "5c0c15e7-b42d-4181-b641-2aca816cf3e6",
+              "parentUUID": "c28f2e32-d26f-470f-b8a3-c4b227f69f91",
               "isHook": true,
               "skipped": false
             }
@@ -76,7 +76,7 @@
               "title": "test case: assert image amount is 2",
               "fullTitle": "Test Suite test case: assert image amount is 2",
               "timedOut": false,
-              "duration": 1817,
+              "duration": 632,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -85,8 +85,8 @@
               "context": null,
               "code": "const images = (await driver).findElements(webdriver.By.css('img'));\nvar size = (await images).length\n\nassert.strictEqual(size, 2, `Amount of images on the page not equal to 2`);",
               "err": {},
-              "uuid": "d4880626-03c5-42c8-aaf7-880e34e8c6b0",
-              "parentUUID": "e8ed468c-97e0-4c08-abb5-a4b6247a5a54",
+              "uuid": "869b4a9b-0892-49e6-90bb-0c69c5fcb164",
+              "parentUUID": "c28f2e32-d26f-470f-b8a3-c4b227f69f91",
               "isHook": false,
               "skipped": false
             },
@@ -103,21 +103,21 @@
               "context": null,
               "code": "const list = (await driver).findElements(webdriver.By.css('ol'));\nassert.notStrictEqual(list.length, 0, 'No ordered list on this page');",
               "err": {},
-              "uuid": "cb6b3a92-f619-4047-bdab-fbd00cc09cb5",
-              "parentUUID": "e8ed468c-97e0-4c08-abb5-a4b6247a5a54",
+              "uuid": "b2f0d8bd-a3ff-4206-bad2-0d004014b059",
+              "parentUUID": "c28f2e32-d26f-470f-b8a3-c4b227f69f91",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "d4880626-03c5-42c8-aaf7-880e34e8c6b0",
-            "cb6b3a92-f619-4047-bdab-fbd00cc09cb5"
+            "869b4a9b-0892-49e6-90bb-0c69c5fcb164",
+            "b2f0d8bd-a3ff-4206-bad2-0d004014b059"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1817,
+          "duration": 632,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -151,7 +151,7 @@
     },
     "marge": {
       "options": {
-        "reportDir": "/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/tests/setup/../../tests",
+        "reportDir": "C:\\Users\\COTTA&CUSH\\Desktop\\dufuna\\CodeReviewTool\\tests\\setup\\winos\\..\\..\\..\\\\tests",
         "reportFilename": "logfile",
         "quiet": "true"
       },
