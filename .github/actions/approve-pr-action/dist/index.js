@@ -45,6 +45,7 @@ async function run() {
                 event: "REQUEST_CHANGES"
             });
             core.debug(`Not approv`)
+            throw new Error("Build failed because there are failed tests, changes are requested!")
         }
 
     } catch(error) {
