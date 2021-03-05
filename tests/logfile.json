@@ -2,14 +2,14 @@
   "stats": {
     "suites": 1,
     "tests": 2,
-    "passes": 2,
+    "passes": 1,
     "pending": 0,
-    "failures": 0,
-    "start": "2021-03-04T11:36:05.909Z",
-    "end": "2021-03-04T11:36:06.557Z",
-    "duration": 648,
+    "failures": 1,
+    "start": "2021-03-05T10:40:28.948Z",
+    "end": "2021-03-05T10:40:30.970Z",
+    "duration": 2022,
     "testsRegistered": 2,
-    "passPercent": 100,
+    "passPercent": 50,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "41a19ff9-2aa5-4dc8-9b87-6d4cb2d87f1b",
+      "uuid": "3afbc24e-8bf3-4db6-b0e9-08d896093b2c",
       "title": "",
       "fullFile": "",
       "file": "",
@@ -27,10 +27,10 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "c28f2e32-d26f-470f-b8a3-c4b227f69f91",
+          "uuid": "f1412b3d-5d2c-4a39-84a7-e1dd9fcfede2",
           "title": "Test Suite",
-          "fullFile": "C:\\Users\\COTTA&CUSH\\Desktop\\dufuna\\CodeReviewTool\\tests\\example-test.js",
-          "file": "C:\\Users\\COTTA&CUSH\\Desktop\\dufuna\\CodeReviewTool\\tests\\example-test.js",
+          "fullFile": "/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/tests/example-test.js",
+          "file": "/Desktop/dufuna/CodeReviewTool/tests/example-test.js",
           "beforeHooks": [
             {
               "title": "\"before all\" hook in \"Test Suite\"",
@@ -45,8 +45,8 @@
               "context": null,
               "code": "pageUrl = 'file:///Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/submissions/index.html'\ndriver.get(pageUrl);",
               "err": {},
-              "uuid": "04421575-1257-45e5-976f-602aef9cfff4",
-              "parentUUID": "c28f2e32-d26f-470f-b8a3-c4b227f69f91",
+              "uuid": "090114d6-0336-4372-a0b3-56f96a20cc83",
+              "parentUUID": "f1412b3d-5d2c-4a39-84a7-e1dd9fcfede2",
               "isHook": true,
               "skipped": false
             }
@@ -56,7 +56,7 @@
               "title": "\"after all\" hook in \"Test Suite\"",
               "fullTitle": "Test Suite \"after all\" hook in \"Test Suite\"",
               "timedOut": false,
-              "duration": 1,
+              "duration": 0,
               "state": null,
               "speed": null,
               "pass": false,
@@ -65,8 +65,8 @@
               "context": null,
               "code": "driver.quit();",
               "err": {},
-              "uuid": "5c0c15e7-b42d-4181-b641-2aca816cf3e6",
-              "parentUUID": "c28f2e32-d26f-470f-b8a3-c4b227f69f91",
+              "uuid": "fb802fe0-8533-4327-a118-7676a92b7270",
+              "parentUUID": "f1412b3d-5d2c-4a39-84a7-e1dd9fcfede2",
               "isHook": true,
               "skipped": false
             }
@@ -75,18 +75,22 @@
             {
               "title": "test case: assert image amount is 2",
               "fullTitle": "Test Suite test case: assert image amount is 2",
-              "timedOut": false,
-              "duration": 632,
-              "state": "passed",
-              "speed": "slow",
-              "pass": true,
-              "fail": false,
+              "timedOut": true,
+              "duration": 2009,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
               "pending": false,
               "context": null,
               "code": "const images = (await driver).findElements(webdriver.By.css('img'));\nvar size = (await images).length\n\nassert.strictEqual(size, 2, `Amount of images on the page not equal to 2`);",
-              "err": {},
-              "uuid": "869b4a9b-0892-49e6-90bb-0c69c5fcb164",
-              "parentUUID": "c28f2e32-d26f-470f-b8a3-c4b227f69f91",
+              "err": {
+                "message": "Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/tests/example-test.js)",
+                "estack": "Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/tests/example-test.js)\n    at listOnTimeout (internal/timers.js:549:17)\n    at processTimers (internal/timers.js:492:7)",
+                "diff": null
+              },
+              "uuid": "196d5296-380c-494d-9dc0-c556caf3b86c",
+              "parentUUID": "f1412b3d-5d2c-4a39-84a7-e1dd9fcfede2",
               "isHook": false,
               "skipped": false
             },
@@ -94,7 +98,7 @@
               "title": "test case: ordered list available",
               "fullTitle": "Test Suite test case: ordered list available",
               "timedOut": false,
-              "duration": 0,
+              "duration": 1,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -103,21 +107,22 @@
               "context": null,
               "code": "const list = (await driver).findElements(webdriver.By.css('ol'));\nassert.notStrictEqual(list.length, 0, 'No ordered list on this page');",
               "err": {},
-              "uuid": "b2f0d8bd-a3ff-4206-bad2-0d004014b059",
-              "parentUUID": "c28f2e32-d26f-470f-b8a3-c4b227f69f91",
+              "uuid": "6cfc034b-0c25-4417-89db-d553dc437724",
+              "parentUUID": "f1412b3d-5d2c-4a39-84a7-e1dd9fcfede2",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "869b4a9b-0892-49e6-90bb-0c69c5fcb164",
-            "b2f0d8bd-a3ff-4206-bad2-0d004014b059"
+            "6cfc034b-0c25-4417-89db-d553dc437724"
           ],
-          "failures": [],
+          "failures": [
+            "196d5296-380c-494d-9dc0-c556caf3b86c"
+          ],
           "pending": [],
           "skipped": [],
-          "duration": 632,
+          "duration": 2010,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -151,7 +156,7 @@
     },
     "marge": {
       "options": {
-        "reportDir": "C:\\Users\\COTTA&CUSH\\Desktop\\dufuna\\CodeReviewTool\\tests\\setup\\winos\\..\\..\\..\\\\tests",
+        "reportDir": "/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/tests/setup/macos/../../../tests",
         "reportFilename": "logfile",
         "quiet": "true"
       },
