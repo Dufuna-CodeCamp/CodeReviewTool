@@ -1,35 +1,64 @@
 {
   "stats": {
     "suites": 1,
-    "tests": 1,
-    "passes": 1,
+    "tests": 2,
+    "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2021-02-17T13:18:20.607Z",
-    "end": "2021-02-17T13:18:22.423Z",
-    "duration": 1816
+    "start": "2021-02-17T15:37:51.129Z",
+    "end": "2021-02-17T15:37:53.144Z",
+    "duration": 2015
   },
   "tests": [
+    {
+      "title": "test case: assert image amount is 2",
+      "fullTitle": "Test Suite test case: assert image amount is 2",
+      "file": "/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/setup/example-test.js",
+      "duration": 2007,
+      "currentRetry": 0,
+      "err": {
+        "stack": "Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/setup/example-test.js)\n    at listOnTimeout (internal/timers.js:549:17)\n    at processTimers (internal/timers.js:492:7)",
+        "message": "Timeout of 2000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/setup/example-test.js)",
+        "code": "ERR_MOCHA_TIMEOUT",
+        "timeout": 2000,
+        "file": "/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/setup/example-test.js"
+      }
+    },
     {
       "title": "test case: ordered list available",
       "fullTitle": "Test Suite test case: ordered list available",
       "file": "/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/setup/example-test.js",
-      "duration": 1809,
+      "duration": 0,
       "currentRetry": 0,
-      "speed": "slow",
+      "speed": "fast",
       "err": {}
     }
   ],
   "pending": [],
-  "failures": [],
+  "failures": [
+    {
+      "title": "test case: assert image amount is 2",
+      "fullTitle": "Test Suite test case: assert image amount is 2",
+      "file": "/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/setup/example-test.js",
+      "duration": 2007,
+      "currentRetry": 0,
+      "err": {
+        "stack": "Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/setup/example-test.js)\n    at listOnTimeout (internal/timers.js:549:17)\n    at processTimers (internal/timers.js:492:7)",
+        "message": "Timeout of 2000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/setup/example-test.js)",
+        "code": "ERR_MOCHA_TIMEOUT",
+        "timeout": 2000,
+        "file": "/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/setup/example-test.js"
+      }
+    }
+  ],
   "passes": [
     {
       "title": "test case: ordered list available",
       "fullTitle": "Test Suite test case: ordered list available",
       "file": "/Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/setup/example-test.js",
-      "duration": 1809,
+      "duration": 0,
       "currentRetry": 0,
-      "speed": "slow",
+      "speed": "fast",
       "err": {}
     }
   ]

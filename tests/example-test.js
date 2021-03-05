@@ -1,4 +1,3 @@
-const { doesNotMatch } = require('assert');
 var assert = require('assert');
 var webdriver = require('selenium-webdriver');
 var driver = new webdriver.Builder()
@@ -7,7 +6,7 @@ var driver = new webdriver.Builder()
 
 describe('Test Suite', function() {
     before(function() {
-        pageUrl = 'http://local.selenium-test.com';
+        pageUrl = 'file:///Users/folashadedaniel/Desktop/dufuna/CodeReviewTool/submissions/index.html'
         driver.get(pageUrl);
     });
     
@@ -17,8 +16,9 @@ describe('Test Suite', function() {
     
     it('test case: assert image amount is 2', async function() {
         const images = (await driver).findElements(webdriver.By.css('img'));
-        const size = (await images).length;
-        assert.strictEqual(size, 2, `Amount of images on the page not equal to ${images} `);
+        var size = (await images).length
+        
+        assert.strictEqual(size, 2, `Amount of images on the page not equal to 2`);
     });
 
     it('test case: ordered list available', async function() {
