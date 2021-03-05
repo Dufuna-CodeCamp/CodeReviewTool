@@ -34,10 +34,11 @@ async function run() {
                 owner: github.context.repo.owner,
                 repo: github.context.repo.repo,
                 pull_number: pr.number,
-                body: "This pr is not approved",
+                body: "There are failed tests in this PR. Do ensure that changes are made",
                 event: "REQUEST_CHANGES"
             });
             core.debug(`Not approv`)
+            throw new Error("Build failed because there are failed tests, changes are requested!")
         }
 
     } catch(error) {
