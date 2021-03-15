@@ -10,12 +10,13 @@ async function checkLogExistenceInPR({ owner, repo, pull_number }) {
 
         console.log(`pull number is ${pull_number}`)
 
-        var fileList = await octokitClient.pulls.listFiles({
+        let fileList = await octokitClient.pulls.listFiles({
             owner: owner,
             repo: repo,
             pull_number: pull_number
         });
 
+        console.log(`fileList is ${fileList}`)
         console.log(`fileList size is ${fileList.length}`)
 
         for (var i = 0; i < fileList.length; i++) {
