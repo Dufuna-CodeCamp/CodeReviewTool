@@ -56,7 +56,7 @@ function getContent() {
 checkLogExistenceInPR({ 
     owner: github.context.repo.owner, 
     repo: github.context.repo.repo,
-    path: 'tests/logfile.json'
+    path: 'test/logfile.json'
 }).then( doesExist => {
     if (doesExist) {
         getContent()
