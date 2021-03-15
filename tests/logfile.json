@@ -1,7 +1,7 @@
 { 
   "stats": { 
     "tests": 5, 
-    "passes": 3, 
-    "failures": 2 
+    "passes": 5, 
+    "failures": 0 
   } 
 } 
