@@ -9,6 +9,7 @@ try {
     const fails = content.stats.failures;
 
     const status = passes > fails ? "PASS" : "FAIL";
+    console.log(`status is ${status}`);
     core.setOutput("stats-output", status);
 
 } catch(error) {
