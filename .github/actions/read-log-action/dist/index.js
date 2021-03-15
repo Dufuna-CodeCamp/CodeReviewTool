@@ -51,23 +51,23 @@ function callCheck() {
     checkLogExistenceInPR({ 
         owner: github.context.repo.owner, 
         repo: github.context.repo.repo,
-        path: core.getInput('path-to-log-file')
+        pull_number: github.context.payload.number
     }).then( async doesExist => {
-        try {
-            if (doesExist) {
-                getContent()
-            } else {
+        if (doesExist) {
+            getContent()
+        } else {
+            try {
+                await octokitClient.pulls.createReview({
+                    owner: github.context.repo.owner,
+                    repo: github.context.repo.repo,
+                    pull_number: pull_number,
+                    body: "There is no log file present in this pull request. Please ensure that you run the tests locally.",
+                    event: "REQUEST_CHANGES"
+                });
                 throw new Error("Build failed because no log file is present, changes are requested!");
+            }  catch(error) {
+                core.setFailed(error.message);
             }
-        }  catch(error) {
-            await octokitClient.pulls.createReview({
-                owner: github.context.repo.owner,
-                repo: github.context.repo.repo,
-                pull_number: pr.number,
-                body: "There is no log file present in this pull request. Please ensure that you run the tests locally.",
-                event: "REQUEST_CHANGES"
-            });
-            core.setFailed(error.message);
         }
             
     })
