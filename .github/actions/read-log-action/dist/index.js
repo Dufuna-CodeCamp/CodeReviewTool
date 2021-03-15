@@ -22,7 +22,7 @@ async function checkLogExistenceInPR({ owner, repo, pull_number, path }) {
         })
 
         for (var i = 0; i < fileList.length; i++) {
-            console.log(fileList[i].filename);
+            core.debug(fileList[i].filename);
             if (fileList[i].filename === 'logfile.json') {
                 return true;
             }
