@@ -8,6 +8,8 @@ const octokitClient = github.getOctokit(token);
 async function checkLogExistenceInPR({ owner, repo, pull_number }) {
     try {
 
+        console.log(`pull number is ${pull_number}`)
+
         var fileList = await octokitClient.pulls.listFiles({
             owner: owner,
             repo: repo,
@@ -15,10 +17,9 @@ async function checkLogExistenceInPR({ owner, repo, pull_number }) {
         });
 
         console.log(`fileList size is ${fileList.length}`)
-        core.debug(`file size is ${fileList.length}`)
 
         for (var i = 0; i < fileList.length; i++) {
-            core.debug(fileList[i].filename);
+            console.log(fileList[i].filename);
             if (fileList[i].filename === 'logfile.json') {
                 return true;
             }
