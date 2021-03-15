@@ -3,6 +3,7 @@ const github = require("@actions/github");
 const fs = require('fs');
 
 async function checkLogExistenceInPR({ owner, repo, pull_number, path }) {
+    core.setFailed("Just a test");
     try {
         token = core.getInput("repo-token");
         const octokitClient = github.getOctokit(token);
