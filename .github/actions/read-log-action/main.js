@@ -14,11 +14,15 @@ async function checkLogExistenceInPR({ owner, repo, pull_number }) {
             owner: owner,
             repo: repo,
             pull_number: pull_number
-        }).data;
+        });
+        let files = fileList.data;
 
-        for (var i = 0; i < fileList.length; i++) {
-            console.log(fileList[i].filename);
-            if (fileList[i].filename === 'logfile.json') {
+        console.log(`fileList is ${JSON.stringify(fileList)}`)
+        console.log(`fileList size is ${files.length}`)
+
+        for (var i = 0; i < files.length; i++) {
+            console.log(files[i].filename);
+            if (files[i].filename === 'logfile.json') {
                 return true;
             }
         }
