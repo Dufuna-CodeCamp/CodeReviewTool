@@ -16,7 +16,6 @@ inputs:
 outputs:
   temp-input:
     description: This is temporary
-    required: true
     
   log-file-content:
     description: "this is the content of the log file"
