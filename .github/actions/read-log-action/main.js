@@ -2,10 +2,11 @@ const core = require("@actions/core");
 const github = require("@actions/github");
 const fs = require('fs');
 
+token = core.getInput("repo-token");
+const octokitClient = github.getOctokit(token);
+
 async function checkLogExistenceInPR({ owner, repo, pull_number, path }) {
     try {
-        token = core.getInput("repo-token");
-        const octokitClient = github.getOctokit(token);
 
         var fileList = await octokitClient.pulls.listFiles({
             owner: owner,
