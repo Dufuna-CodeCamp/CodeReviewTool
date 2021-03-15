@@ -79,8 +79,8 @@ write_json_response() {
 
 write_output() {
     echo -e "${ITALIC}Total number of tests:${NONE} ${BOLD}$total_tests${NONE}"
-    echo -e "${ITALIC}Passed tests:${NONE} ${BOLD}$no_of_passes${NONE}."
-    echo -e "${ITALIC}Failed tests:${NONE} ${BOLD}$no_of_failures${NONE}."
+    echo -e "${ITALIC}Passed tests:${NONE} ${BOLD}$no_of_passes${NONE}"
+    echo -e "${ITALIC}Failed tests:${NONE} ${BOLD}$no_of_failures${NONE}"
 }
 
 no_of_passes=0
