@@ -14,6 +14,9 @@ async function checkLogExistenceInPR({ owner, repo, pull_number, path }) {
             pull_number: pull_number
         })
 
+        console.log(`file size is ${fileList.length}`)
+        core.debug(`file size is ${fileList.length}`)
+
         for (var i = 0; i < fileList.length; i++) {
             core.debug(fileList[i].filename);
             if (fileList[i].filename === 'logfile.json') {
