@@ -2,74 +2,33 @@ module.exports =
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 678:
+/***/ 557:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const core = __nccwpck_require__(392);
-const github = __nccwpck_require__(177);
+const core = __nccwpck_require__(145);
 const fs = __nccwpck_require__(747);
 
-async function checkLogExistenceInPR({ owner, repo, pull_number, path }) {
-    try {
-        token = core.getInput("repo-token");
-        const octokitClient = github.getOctokit(token);
 
-        var fileList = await octokitClient.pulls.listFiles({
-            owner: owner,
-            repo: repo,
-            pull_number: pull_number
-        })
-
-        for (var i = 0; i < fileList.length; i++) {
-            if (fileList[i].filename == 'logfile.json') {
-                return true;
-            }
-        }
-        await octokitClient.pulls.createReview({
-            owner: github.context.repo.owner,
-            repo: github.context.repo.repo,
-            pull_number: pr.number,
-            body: "There is no log file present in this pull request. Please ensure that you run the tests locally.",
-            event: "REQUEST_CHANGES"
-        });
-        core.setFailed("No log file in the PR");
-        return false;
-
-    } catch(error) {
-        core.setFailed(error.message);
-        return false;
-    }
-}
-
-function getContent() {
-
-    try {
-        const filePath = core.getInput('path-to-log-file');
-
-        fs.readFile(filePath, 'utf8', (error, data) => {
-            core.setOutput("log-file-content", data)
-        });
+try {
+    const fileContent = core.getInput("log-file-content");
+    const tempInput = core.getInput("temp-input")
     
-    } catch(error) {
-        core.setFailed(error.message);
-    }
-}
+    const content = JSON.parse(fileContent);
+    const passes = content.stats.passes;
+    const fails = content.stats.failures;
 
-checkLogExistenceInPR({ 
-    owner: github.context.repo.owner, 
-    repo: github.context.repo.repo,
-    path: core.getInput('path-to-log-file')
-}).then( doesExist => {
-    if (doesExist) {
-        getContent()
-    } else {
-        throw new Error("Build failed because no log file is present, changes are requested!");
-    }
-})
+    const status = passes > fails ? "PASS" : "FAIL";
+    console.log(`status is ${status}`);
+    core.setOutput("stats-output", status);
+
+} catch(error) {
+    core.setFailed(error.message);
+    console.log(`Error parsing JSON string: ${error}`);
+}
 
 /***/ }),
 
-/***/ 515:
+/***/ 923:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -83,7 +42,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const os = __importStar(__nccwpck_require__(87));
-const utils_1 = __nccwpck_require__(539);
+const utils_1 = __nccwpck_require__(497);
 /**
  * Commands
  *
@@ -155,7 +114,7 @@ function escapeProperty(s) {
 
 /***/ }),
 
-/***/ 392:
+/***/ 145:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -177,9 +136,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const command_1 = __nccwpck_require__(515);
-const file_command_1 = __nccwpck_require__(214);
-const utils_1 = __nccwpck_require__(539);
+const command_1 = __nccwpck_require__(923);
+const file_command_1 = __nccwpck_require__(494);
+const utils_1 = __nccwpck_require__(497);
 const os = __importStar(__nccwpck_require__(87));
 const path = __importStar(__nccwpck_require__(622));
 /**
@@ -400,7 +359,7 @@ exports.getState = getState;
 
 /***/ }),
 
-/***/ 214:
+/***/ 494:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -418,7 +377,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const fs = __importStar(__nccwpck_require__(747));
 const os = __importStar(__nccwpck_require__(87));
-const utils_1 = __nccwpck_require__(539);
+const utils_1 = __nccwpck_require__(497);
 function issueCommand(command, message) {
     const filePath = process.env[`GITHUB_${command}`];
     if (!filePath) {
@@ -436,7 +395,7 @@ exports.issueCommand = issueCommand;
 
 /***/ }),
 
-/***/ 539:
+/***/ 497:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -459,14 +418,6 @@ function toCommandValue(input) {
 }
 exports.toCommandValue = toCommandValue;
 //# sourceMappingURL=utils.js.map
-
-/***/ }),
-
-/***/ 177:
-/***/ ((module) => {
-
-module.exports = eval("require")("@actions/github");
-
 
 /***/ }),
 
@@ -532,6 +483,6 @@ module.exports = require("path");;
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	return __nccwpck_require__(678);
+/******/ 	return __nccwpck_require__(557);
 /******/ })()
 ;

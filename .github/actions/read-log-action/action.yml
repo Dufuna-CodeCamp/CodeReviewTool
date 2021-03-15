@@ -14,6 +14,9 @@ inputs:
     default: "tests/logfile.json"
 
 outputs:
+  temp-input:
+    description: This is temporary
+    
   log-file-content:
     description: "this is the content of the log file"
     # value:
