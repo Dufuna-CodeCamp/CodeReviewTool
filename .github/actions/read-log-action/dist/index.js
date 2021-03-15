@@ -21,10 +21,7 @@ async function checkLogExistenceInPR({ owner, repo, pull_number }) {
             owner: owner,
             repo: repo,
             pull_number: pull_number
-        });
-
-        console.log(`fileList is ${JSON.stringify(fileList)}`)
-        console.log(`fileList size is ${fileList.length}`)
+        }).data;
 
         for (var i = 0; i < fileList.length; i++) {
             console.log(fileList[i].filename);
