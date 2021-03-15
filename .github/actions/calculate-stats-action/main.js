@@ -1,7 +1,6 @@
 const core = require("@actions/core");
 const fs = require('fs');
 
-
 try {
     const fileContent = core.getInput("log-file-content");
     const content = JSON.parse(fileContent);

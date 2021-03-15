@@ -6,7 +6,40 @@ module.exports =
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const core = __nccwpck_require__(46);
+const github = __nccwpck_require__(528);
 const fs = __nccwpck_require__(747);
+
+async function checkLogExistenceInPR({ owner, repo, pull_number, path }) {
+    try {
+        token = core.getInput("repo-token");
+        const octokitClient = github.getOctokit(token);
+
+        var fileList = await octokitClient.pulls.listFiles({
+            owner: owner,
+            repo: repo,
+            pull_number: pull_number
+        })
+
+        for (var i = 0; i < fileList.length; i++) {
+            if (fileList[i].filename === 'logfile.json') {
+                return true;
+            }
+        }
+        await octokitClient.pulls.createReview({
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
+            pull_number: pr.number,
+            body: "There is no log file present in this pull request. Please ensure that you run the tests locally.",
+            event: "REQUEST_CHANGES"
+        });
+        core.setFailed("No log file in the PR");
+        return false;
+
+    } catch(error) {
+        core.setFailed(error.message);
+        return false;
+    }
+}
 
 function getContent() {
 
@@ -22,7 +55,17 @@ function getContent() {
     }
 }
 
-getContent();
+checkLogExistenceInPR({ 
+    owner: github.context.repo.owner, 
+    repo: github.context.repo.repo,
+    path: core.getInput('path-to-log-file')
+}).then( doesExist => {
+    if (doesExist) {
+        getContent()
+    } else {
+        throw new Error("Build failed because no log file is present, changes are requested!");
+    }
+})
 
 /***/ }),
 
@@ -416,6 +459,14 @@ function toCommandValue(input) {
 }
 exports.toCommandValue = toCommandValue;
 //# sourceMappingURL=utils.js.map
+
+/***/ }),
+
+/***/ 528:
+/***/ ((module) => {
+
+module.exports = eval("require")("@actions/github");
+
 
 /***/ }),
 
