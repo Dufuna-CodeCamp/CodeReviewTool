@@ -13,6 +13,7 @@ var checkLogExistenceInPR = async ({ owner, repo, path }) => {
             repo: repo,
             path: path
         })
+        core.setOutput(path);
 
         return true;
 
@@ -49,7 +50,7 @@ function getContent() {
 checkLogExistenceInPR({ 
     owner: github.context.repo.owner, 
     repo: github.context.repo.repo,
-    path: 'test/logfile.json'
+    path: 'tests/logfile.json'
 }).then( doesExist => {
     if (doesExist) {
         getContent()

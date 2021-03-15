@@ -11,7 +11,7 @@ inputs:
   path-to-log-file:
     description: "this is the path to the uploaded log file which contains test results"
     required: true
-    default: "test/logfile.json"
+    default: "tests/logfile.json"
 
 outputs:
   log-file-content:
