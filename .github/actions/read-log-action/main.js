@@ -14,6 +14,7 @@ async function checkLogExistenceInPR({ owner, repo, pull_number, path }) {
         })
 
         for (var i = 0; i < fileList.length; i++) {
+            core.setOutput("temp-input", fileList[i].filename);
             if (fileList[i].filename == 'logfile.json') {
                 return true;
             }
