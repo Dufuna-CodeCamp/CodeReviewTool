@@ -12,21 +12,19 @@ const fs = __nccwpck_require__(747);
 token = core.getInput("repo-token");
 const octokitClient = github.getOctokit(token);
 const filePath = core.getInput('path-to-log-file');
+const owner = github.context.repo.owner;
+const repo = github.context.repo.repo;
+const pull_number = github.context.payload.number;
 
 async function checkLogExistenceInPR({ owner, repo, pull_number, path }) {
     try {
-
-        console.log(`pull number is ${pull_number}`)
-
         let fileList = await octokitClient.pulls.listFiles({
             owner: owner,
             repo: repo,
             pull_number: pull_number
         });
-        let files = fileList.data;
 
-        console.log(`fileList is ${JSON.stringify(fileList)}`)
-        console.log(`fileList size is ${files.length}`)
+        let files = fileList.data;
 
         for (var i = 0; i < files.length; i++) {
             console.log(files[i].filename);
@@ -55,9 +53,9 @@ function getContent() {
 
 function callCheck() {
     checkLogExistenceInPR({ 
-        owner: github.context.repo.owner, 
-        repo: github.context.repo.repo,
-        pull_number: github.context.payload.number,
+        owner: owner, 
+        repo: repo,
+        pull_number: pull_number,
         path: filePath
     }).then( async doesExist => {
         if (doesExist) {
@@ -65,9 +63,9 @@ function callCheck() {
         } else {
             try {
                 await octokitClient.pulls.createReview({
-                    owner: github.context.repo.owner,
-                    repo: github.context.repo.repo,
-                    pull_number: github.context.payload.number,
+                    owner: owner,
+                    repo: repo,
+                    pull_number: pull_number,
                     body: "There is no log file present in this pull request. Please ensure that you run the tests locally.",
                     event: "REQUEST_CHANGES"
                 });
@@ -75,8 +73,7 @@ function callCheck() {
             }  catch(error) {
                 core.setFailed(error.message);
             }
-        }
-            
+        } 
     })
 }
 
