@@ -8,7 +8,6 @@ module.exports =
 const core = __nccwpck_require__(46);
 const fs = __nccwpck_require__(747);
 
-
 try {
     const fileContent = core.getInput("log-file-content");
     const content = JSON.parse(fileContent);
@@ -16,6 +15,7 @@ try {
     const fails = content.stats.failures;
 
     const status = passes > fails ? "PASS" : "FAIL";
+    console.log(`status is ${status}`);
     core.setOutput("stats-output", status);
 
 } catch(error) {
