@@ -12,6 +12,7 @@ const fs = __nccwpck_require__(747);
 try {
     const fileContent = core.getInput("log-file-content");
     const tempInput = core.getInput("temp-input")
+    
     const content = JSON.parse(fileContent);
     const passes = content.stats.passes;
     const fails = content.stats.failures;
