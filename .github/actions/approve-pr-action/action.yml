@@ -15,6 +15,7 @@ inputs:
   status:
     description: "result from parsing log file, either PASS or FAIL"
     required: true
+    default: FAIL
     
 runs:
   using: 'node12'
