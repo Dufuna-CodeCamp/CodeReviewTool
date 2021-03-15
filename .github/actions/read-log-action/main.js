@@ -2,7 +2,7 @@ const core = require("@actions/core");
 const github = require("@actions/github");
 const fs = require('fs');
 
-var checkLogExistenceInPR = async ({ owner, repo, path }) => {
+async function checkLogExistenceInPR({ owner, repo, path }) {
     try {
         token = core.getInput("repo-token");
         const octokitClient = github.getOctokit(token);
@@ -13,8 +13,6 @@ var checkLogExistenceInPR = async ({ owner, repo, path }) => {
             repo: repo,
             path: path
         })
-        core.setOutput(path);
-
         return true;
 
     } catch(error) {
@@ -29,7 +27,8 @@ var checkLogExistenceInPR = async ({ owner, repo, path }) => {
             });
         }
         core.debug(`Not approv`)
-        throw new Error("Build failed because no log file is present, changes are requested!")
+        core.setFailed(error.message);
+        return false;
     }
 }
 
@@ -50,9 +49,11 @@ function getContent() {
 checkLogExistenceInPR({ 
     owner: github.context.repo.owner, 
     repo: github.context.repo.repo,
-    path: 'tests/logfile.json'
+    path: core.getInput('path-to-log-file')
 }).then( doesExist => {
     if (doesExist) {
         getContent()
+    } else {
+        throw new Error("Build failed because no log file is present, changes are requested!");
     }
 })
