@@ -2,31 +2,33 @@ const core = require("@actions/core");
 const github = require("@actions/github");
 const fs = require('fs');
 
-async function checkLogExistenceInPR({ owner, repo, path }) {
+async function checkLogExistenceInPR({ owner, repo, pull_number, path }) {
     try {
         token = core.getInput("repo-token");
         const octokitClient = github.getOctokit(token);
 
-        await octokitClient.repos.getContents({
-            method: 'HEAD',
+        var fileList = await octokitClient.pulls.listFiles({
             owner: owner,
             repo: repo,
-            path: path
+            pull_number: pull_number
         })
-        return true;
+
+        for (var i = 0; i < fileList.length; i++) {
+            if (fileList[i].filename == 'logfile.json') {
+                return true;
+            }
+        }
+        await octokitClient.pulls.createReview({
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
+            pull_number: pr.number,
+            body: "There is no log file present in this pull request. Please ensure that you run the tests locally.",
+            event: "REQUEST_CHANGES"
+        });
+        core.setFailed("No log file in the PR");
+        return false;
 
     } catch(error) {
-
-        if (error.status === 404) {
-            await octokitClient.pulls.createReview({
-                owner: github.context.repo.owner,
-                repo: github.context.repo.repo,
-                pull_number: pr.number,
-                body: "There is no log file present in this pull request. Please ensure that you run the tests locally.",
-                event: "REQUEST_CHANGES"
-            });
-        }
-        core.debug(`Not approv`)
         core.setFailed(error.message);
         return false;
     }
