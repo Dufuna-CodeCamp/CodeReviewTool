@@ -5,16 +5,16 @@ const fs = require('fs');
 token = core.getInput("repo-token");
 const octokitClient = github.getOctokit(token);
 
-async function checkLogExistenceInPR({ owner, repo, pull_number, path }) {
+async function checkLogExistenceInPR({ owner, repo, pull_number }) {
     try {
 
         var fileList = await octokitClient.pulls.listFiles({
             owner: owner,
             repo: repo,
             pull_number: pull_number
-        })
+        });
 
-        console.log(`file size is ${fileList.length}`)
+        console.log(`fileList size is ${fileList.length}`)
         core.debug(`file size is ${fileList.length}`)
 
         for (var i = 0; i < fileList.length; i++) {
