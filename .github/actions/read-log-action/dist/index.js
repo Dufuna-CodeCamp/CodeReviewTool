@@ -60,7 +60,7 @@ function callCheck() {
                 await octokitClient.pulls.createReview({
                     owner: github.context.repo.owner,
                     repo: github.context.repo.repo,
-                    pull_number: pull_number,
+                    pull_number: github.context.payload.number,
                     body: "There is no log file present in this pull request. Please ensure that you run the tests locally.",
                     event: "REQUEST_CHANGES"
                 });
