@@ -4,8 +4,9 @@ const fs = require('fs');
 
 token = core.getInput("repo-token");
 const octokitClient = github.getOctokit(token);
+const filePath = core.getInput('path-to-log-file');
 
-async function checkLogExistenceInPR({ owner, repo, pull_number }) {
+async function checkLogExistenceInPR({ owner, repo, pull_number, path }) {
     try {
 
         console.log(`pull number is ${pull_number}`)
@@ -22,7 +23,7 @@ async function checkLogExistenceInPR({ owner, repo, pull_number }) {
 
         for (var i = 0; i < files.length; i++) {
             console.log(files[i].filename);
-            if (files[i].filename === 'logfile.json') {
+            if (files[i].filename === path) {
                 return true;
             }
         }
@@ -36,8 +37,6 @@ async function checkLogExistenceInPR({ owner, repo, pull_number }) {
 function getContent() {
 
     try {
-        const filePath = core.getInput('path-to-log-file');
-
         fs.readFile(filePath, 'utf8', (error, data) => {
             core.setOutput("log-file-content", data)
         });
@@ -51,7 +50,8 @@ function callCheck() {
     checkLogExistenceInPR({ 
         owner: github.context.repo.owner, 
         repo: github.context.repo.repo,
-        pull_number: github.context.payload.number
+        pull_number: github.context.payload.number,
+        path: filePath
     }).then( async doesExist => {
         if (doesExist) {
             getContent()
