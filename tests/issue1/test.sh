@@ -72,6 +72,7 @@ write_json_response() {
     echo "    \"tests\": $total_tests," >> $path_to_log
     echo "    \"passes\": $no_of_passes," >> $path_to_log
     echo "    \"failures\": $no_of_failures" >> $path_to_log
+    echo "    \"owner\": $folder_name" >> $path_to_log
     echo "  }" >> $path_to_log
     echo "}" >> $path_to_log
 }
