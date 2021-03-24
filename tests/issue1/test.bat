@@ -88,8 +88,8 @@ ECHO { > %path_to_log%
 ECHO   "stats": { >> %path_to_log%
 ECHO     "tests": %total_tests%, >> %path_to_log%
 ECHO     "passes": %no_of_passes%, >> %path_to_log%
-ECHO     "failures": %no_of_failures% >> %path_to_log%
-ECHO     "owner": %folder_name% >> %path_to_log%
+ECHO     "failures": %no_of_failures%, >> %path_to_log%
+ECHO     "owner": "%folder_name%" >> %path_to_log%
 ECHO   } >> %path_to_log%
 ECHO } >> %path_to_log%
 
