@@ -75,7 +75,7 @@ Tests that will be run are located inside a subfolder in the `tests` folder. e.g
 - Once all tests pass, you can push your changes and create a pull request.
 
 ## Authors
-- Folashade Daniel - `@beccadaniel` *on Github*
+- Folashade Daniel - [@beccadaniel](github.com/beccadaniel)
 
 ## Acknowledgements
 `Thanks Everyone!!!`
