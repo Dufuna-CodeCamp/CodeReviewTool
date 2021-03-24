@@ -10,8 +10,6 @@ SET /P last_name="Enter Last Name: "
 SET submission_directory="%~dp0../../submissions"
 SET path_to_log="%submission_directory:"=%/../tests/logfile.json"
 
-@REM get appropriate folder name
-
 CALL :TrimFirstName
 CALL :TrimLastName
 CALL :LoCase first_name
@@ -30,38 +28,53 @@ SET path_to_aboutMe_folder="%path_to_folder:"=%/aboutMe"
 SET path_to_file="%path_to_aboutMe_folder:"=%/aboutMe"
 SET /A no_of_passes=0
 SET /A no_of_failures=0
+SET /A folder_exists=0
+SET /A aboutMe_folder_exists=0
+SET /A file_exists=0
 
 
 @REM check folder existence
 
 FOR /F "usebackq" %%i IN (`dir %submission_directory% ^| find "%folder_name:"=%" /c`) DO SET /A folder_count=%%i
+FOR /F "usebackq" %%i IN (`dir %path_to_folder% ^| find "aboutMe" /c`) DO SET /A aboutMe_folder_count=%%i
+FOR /F "usebackq" %%i IN (`dir %path_to_aboutMe_folder% ^| find "aboutMe" /c`) DO SET /A aboutMe_file_count=%%i
 
 IF %folder_count% EQU 1 (
     call :FolderExistence "1"
 ) ELSE (
     call :FolderExistence "0"
-    ECHO . && ECHO Suggestions && ECHO 1. Your folder should be named in camel case with your First and Last name. && ECHO 2. Ensure your folder is located in the submissions directory.
+    ECHO.
+    ECHO [7m Checking for the top folder or directory ... [0m
+    ECHO.
+    ECHO [91m1. Your folder should be named in camel case with your First and Last name: "%folder_name%"
+    ECHO 2. Ensure your folder is located in the submissions directory.[0m
 )
 
-@REM check aboutMe folder existence
+IF %folder_exists% GTR 0 (
+    @REM check aboutMe folder existence
+    
+    IF %aboutMe_folder_count% EQU 1 (
+        call :AboutMeFolderExistence "1"
 
-FOR /F "usebackq" %%i IN (`dir %path_to_folder% ^| find "aboutMe" /c`) DO SET /A aboutMe_folder_count=%%i
+        IF %aboutMe_file_count% EQU 2 (
+            call :FileExistence "1"
+        ) ELSE (
+            call :FileExistence "0"
+            ECHO.
+            ECHO [7m Checking the aboutMe text file ... [0m
+            ECHO.
+            ECHO [91m1. You should create a text file named [4maboutMe.txt[0m[91m or [4maboutMe[0m[91m.
+            ECHO 2. Ensure your file is located in the [4maboutMe[0m [91mfolder you have created.
+            ECHO 3. Ensure your text file contains text.[0m
+        )
 
-IF %aboutMe_folder_count% EQU 1 (
-    call :AboutMeFolderExistence "1"
-) ELSE (
-    call :AboutMeFolderExistence "0"
-    ECHO . && ECHO Suggestions && ECHO 1. Your folder should be named 'aboutMe' and located in the folder with your First and Last name.
-)
-
-@REM check file existence
-
-FOR /F "usebackq" %%i IN (`dir %path_to_aboutMe_folder% ^| find "aboutMe" /c`) DO SET /A aboutMe_file_count=%%i
-IF %aboutMe_file_count% EQU 2 (
-    call :FileExistence "1"
-) ELSE (
-    call :FileExistence "0"
-    ECHO . && ECHO Suggestions && ECHO 1. You should create a text file named 'aboutMe'. && ECHO 2. Ensure your file is located in the 'aboutMe' folder you have created. && ECHO 3. Ensure your text file contains text.
+    ) ELSE (
+        call :AboutMeFolderExistence "0"
+        ECHO.
+        ECHO [7m Checking the aboutMe folder ... [0m
+        ECHO.
+        ECHO [91m1. Your folder should be named [4maboutMe[0m [91mand located in the folder with your First and Last name: "%folder_name%/aboutMe"[0m
+    )
 )
 
 IF %folder_exists% GTR 0 (
@@ -94,7 +107,12 @@ ECHO   } >> %path_to_log%
 ECHO } >> %path_to_log%
 
 @REM write output to cmd
-ECHO . && ECHO Total number of tests: %total_tests% && ECHO Passed tests: %no_of_passes% && ECHO Failed tests: %no_of_failures%
+ECHO.
+ECHO [7m Test Results ... [0m
+ECHO.
+ECHO [1m[97mTotal number of tests: %total_tests%[0m
+ECHO [92mPassed tests: %no_of_passes%[0m
+ECHO [91mFailed tests: %no_of_failures%[0m
 
 :NoOfPasses
     SET /A no_of_passes+=1
