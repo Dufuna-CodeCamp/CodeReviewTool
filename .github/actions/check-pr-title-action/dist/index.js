@@ -24,6 +24,7 @@ async function run() {
             pull_number: pr.number,
         });
         const pr_title = pull.title;
+        console.log(pr_title);
 
         let re = new RegExp('\[[A-Z]+-[0-9]+\]');
         if (!re.test(pr_title)) {
