@@ -3,6 +3,7 @@ name: Code Review
 # Controls when the action will run. 
 on:
   pull_request:
+    types: [assigned, opened, synchronize, reopened, edited, review_requested, review_request_removed]
     branches:
       - master
 
@@ -17,6 +18,11 @@ jobs:
     
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+
+    - name: check-pr-title-action
+      uses: ./.github/actions/check-pr-title-action
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: read-log-action
       uses: ./.github/actions/read-log-action

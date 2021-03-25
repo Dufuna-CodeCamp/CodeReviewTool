@@ -32,6 +32,8 @@ Here are some resources that might make contributing to this repository easier. 
 
 - [Writing workflows for Github actions](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)
 
+- [Font formatting on Windows Command Line](https://gist.githubusercontent.com/mlocati/fdabcaeb8071d5c75a2d51712db24011/raw/b710612d6320df7e146508094e84b92b34c77d48/win10colors.cmd)
+
 ## Technical Description
 To use this tool:
 
@@ -73,7 +75,7 @@ Tests that will be run are located inside a subfolder in the `tests` folder. e.g
 - Once all tests pass, you can push your changes and create a pull request.
 
 ## Authors
-- Folashade Daniel - `@beccadaniel` *on Github*
+- Folashade Daniel - [@beccadaniel](github.com/beccadaniel)
 
 ## Acknowledgements
 `Thanks Everyone!!!`
