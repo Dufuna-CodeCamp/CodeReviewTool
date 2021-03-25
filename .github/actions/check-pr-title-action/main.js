@@ -16,9 +16,7 @@ async function run() {
             repo: github.context.repo.repo,
             pull_number: pr.number,
         });
-        const pr_title = pull.title;
-        console.log(JSON.stringify(pull));
-        console.log(pr_title);
+        const pr_title = pull.data.title;
 
         let re = new RegExp('\[[A-Z]+-[0-9]+\]');
         if (!re.test(pr_title)) {
