@@ -3,6 +3,7 @@ name: Code Review
 # Controls when the action will run. 
 on:
   pull_request:
+    types: [assigned, opened, synchronize, reopened, edited, review_requested, review_request_removed]
     branches:
       - master
 
