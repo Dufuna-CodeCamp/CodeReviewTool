@@ -15,9 +15,9 @@ echo -n "Enter Last Name : "
 read last_name
 
 set_folder() {
-    first_name=$(echo "$first_name" | tr -s '[:upper:]' '[:lower:]')
-    first_letter=$(echo "${last_name:0:1}" | tr -s '[:lower:]' '[:upper:]')
-    last_substring=$(echo "${last_name:1}" | tr -s '[:upper:]' '[:lower:]')
+    first_name=$(echo "$first_name" | tr '[:upper:]' '[:lower:]')
+    first_letter=$(echo "${last_name:0:1}" | tr '[:lower:]' '[:upper:]')
+    last_substring=$(echo "${last_name:1}" | tr '[:upper:]' '[:lower:]')
 
     folder_name="$first_name$first_letter$last_substring"
 }
