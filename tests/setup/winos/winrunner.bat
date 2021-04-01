@@ -83,5 +83,5 @@ IF [%mocha_version%] == [] (
 )
 
 @ECHO on
-
-echo "Setup is complete"
+ECHO .
+ECHO [92mSetup is Complete![0m
