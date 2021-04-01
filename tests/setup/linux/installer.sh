@@ -94,3 +94,5 @@ else
     sudo npm install --global mochawesome
     sudo npm install chai
 fi
+
+echo -e "${BOLD}Setup is Complete!"
