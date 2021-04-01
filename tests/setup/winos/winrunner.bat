@@ -73,6 +73,7 @@ IF [%mocha_version%] == [] (
     cd %test_folder%\setup\winos
     call mochainstaller.bat
     call mochawesomeinstaller.bat
+    call chaiinstaller.bat
     cd %home_directory%
     
     cd "%APPDATA%\npm\"

@@ -75,6 +75,7 @@ then
 else
     sudo npm install --global mocha
     sudo npm install --global mochawesome
+    sudo npm install chai
 fi
 
 # Run Tests
