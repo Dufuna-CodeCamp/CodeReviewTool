@@ -73,6 +73,7 @@ IF [%mocha_version%] == [] (
     cd %test_folder%\setup\winos
     call mochainstaller.bat
     call mochawesomeinstaller.bat
+    call chaiinstaller.bat
     cd %home_directory%
     
     cd "%APPDATA%\npm\"
@@ -81,13 +82,6 @@ IF [%mocha_version%] == [] (
     echo "mocha is available"
 )
 
-cd %test_folder%\setup\winos
-
 @ECHO on
-
-:: write out to console the location of the report file
-call testrunner.bat
-
-cd %home_directory%
-
-echo "visit %project_working_directory:"=%\tests\logfile.html in your browser to see test reports"
+ECHO.
+ECHO [92mSetup is Complete![0m

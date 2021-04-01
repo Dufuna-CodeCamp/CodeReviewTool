@@ -75,12 +75,7 @@ then
 else
     sudo npm install --global mocha
     sudo npm install --global mochawesome
+    sudo npm install chai
 fi
 
-# Run Tests
-
-customReportDir=$project_working_directory/tests
-customReportFilename=logfile
-
-echo -e "${ITALIC}visit${NONE} ${BOLD}${UNDERLINE}$project_working_directory/tests/logfile.html${NONE} in your browser to see test reports"
-mocha $project_working_directory/tests/example-test.js --reporter mochawesome --reporter-options reportDir=$customReportDir,reportFilename=$customReportFilename,quiet=true
+echo -e "${BOLD}Setup is Complete!"
