@@ -92,7 +92,7 @@ then
 else
     sudo npm install --global mocha
     sudo npm install --global mochawesome
-    sudo npm install chai
+    sudo npm install --prefix $test_folder chai
 fi
 
 echo -e "${BOLD}Setup is Complete!"
