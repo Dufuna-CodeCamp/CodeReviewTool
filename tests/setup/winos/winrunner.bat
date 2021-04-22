@@ -82,6 +82,12 @@ IF [%mocha_version%] == [] (
     echo "mocha is available"
 )
 
+call phantomjsinstaller.bat
+call phantomcssinstaller.bat
+call casperjsinstaller.bat
+
+set path_to_phantomjs="%test_folder:"=%\node_modules\phantomjs\lib\phantom\bin\"
+
 @ECHO on
 ECHO.
 ECHO [92mSetup is Complete![0m

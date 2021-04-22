@@ -82,7 +82,7 @@ else
     sudo mv -f ~/chromedriver $path_to_driver/chromedriver
     sudo chown root $path_to_driver/chromedriver
     sudo chmod +x $path_to_driver/chromedriver
-    export PATH=$PATH:$path_to_driver
+    echo export PATH=\"$PATH:$path_to_driver\" > ~/etc/environment
 fi
 
 # Mocha check & Installation
@@ -94,5 +94,13 @@ else
     sudo npm install --global mochawesome
     sudo npm install --prefix $test_folder chai
 fi
+
+sudo npm install --prefix $test_folder phantomjs
+sudo npm install --prefix $test_folder phantomcss
+sudo npm install --prefix $test_folder casperjs
+
+path_to_phantomjs=$test_folder/node_modules/phantomjs/lib/phantom/bin/
+
+echo export PATH=\"$PATH:$path_to_phantomjs\" > ~/etc/environment
 
 echo -e "${BOLD}Setup is Complete!"
