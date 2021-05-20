@@ -10,7 +10,7 @@ cd %home_directory%
 
 For /F "usebackq" %%v IN (`curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE`) DO set chrome_driver_version=%%v
 
-set path_to_chrome_driver="%homedrive%\bin"
+set path_to_chrome_driver="%homedrive%\Program Files\nodejs"
 
 For /F "usebackq" %%v IN (`node -v`) DO set node_version=%%v
 
@@ -26,14 +26,14 @@ set italic='\x1b[3m'
 IF [%node_version%]==[] (
     @ECHO off
     IF %pc_bit_size% LSS 1 (
-        curl -o node.msi https://nodejs.org/dist/v14.15.5/node-v14.15.5-x86.msi
-    ) ELSE (
         curl -o node.msi https://nodejs.org/dist/v14.15.5/node-v14.15.5-x64.msi
+    ) ELSE (
+        curl -o node.msi https://nodejs.org/dist/v14.15.5/node-v14.15.5-x86.msi
     )
     msiexec.exe /i node.msi /qn /norestart
-    @REM powershell -Command "Start-Process cmd -Verb RunAs"
+    del node.msi
 ) else (
-    echo "node is available"
+    echo [92m node is available [0m
 )
 
 cd %test_folder%
@@ -44,7 +44,7 @@ FOR /F "usebackq" %%i IN (`npm ls --depth=0 ^| find "selenium-webdriver" /c`) DO
 cd %home_directory%
 
 IF %selenium_wc% GTR 0 (
-    echo "selenium-webdriver is available"
+    echo [92m selenium-webdriver is available [0m
 ) ELSE (
     @ECHO off
     cd %test_folder%\setup\winos
@@ -56,16 +56,17 @@ FOR /F "usebackq" %%i IN (`dir %path_to_chrome_driver% ^| find "chromedriver.exe
 
 :: chromedriver check & installation
 IF %chromedriver_wc% GTR 0 (
-    echo "chromedriver is available"
+    echo [92m chromedriver is available [0m
 ) ELSE (
     @ECHO off
     curl -S -o chromedriver_win32.zip https://chromedriver.storage.googleapis.com/%chrome_driver_version%/chromedriver_win32.zip
     if not EXIST %path_to_chrome_driver% mkdir %path_to_chrome_driver:"=%
+    tar -zxvf chromedriver_win32.zip -C "%path_to_chrome_driver:"=%"
     del chromedriver_win32.zip
 )
 @ECHO off
 
-set PATH=%PATH%;%path_to_chrome_driver:"=%
+setx MYPATH "%PATH%;%path_to_chrome_driver:"=%"
 
 :: mocha check & installation
 IF [%mocha_version%] == [] (
@@ -74,20 +75,23 @@ IF [%mocha_version%] == [] (
     call mochainstaller.bat
     call mochawesomeinstaller.bat
     call chaiinstaller.bat
+    call phantomjsinstaller.bat
+    call phantomcssinstaller.bat
+    call casperjsinstaller.bat
     cd %home_directory%
     
     cd "%APPDATA%\npm\"
     copy /Y "%test_folder:"=%\setup\winos\file.cmd" mocha.cmd
 ) ELSE (
-    echo "mocha is available"
+    echo [92m mocha is available [0m
 )
-
-call phantomjsinstaller.bat
-call phantomcssinstaller.bat
-call casperjsinstaller.bat
-
-set path_to_phantomjs="%test_folder:"=%\node_modules\phantomjs\lib\phantom\bin\"
 
 @ECHO on
 ECHO.
 ECHO [92mSetup is Complete![0m
+
+ECHO [92mPlease ensure you have installed the latest version of Chrome![0m
+
+@ECHO off
+
+cd "%test_folder:"=%"

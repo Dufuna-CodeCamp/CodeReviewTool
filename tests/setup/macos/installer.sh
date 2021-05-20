@@ -81,11 +81,7 @@ fi
 
 sudo npm install --prefix $test_folder phantomjs
 sudo npm install --prefix $test_folder phantomcss
-sudo npm install --prefix $test_folder casperjs
-
-path_to_phantomjs=$test_folder/node_modules/phantomjs/lib/phantom/bin/
-
-echo export PATH=\"$path_to_phantomjs:\$PATH\" >> ~/.bash_profile
-echo export PATH=\"$path_to_phantomjs:\$PATH\" >> ~/.zshrc
+sudo npm install --global casperjs
 
 echo -e "${BOLD}Setup is Complete!"
+echo -e "${BOLD}Please ensure you have installed the latest version of Chrome!"

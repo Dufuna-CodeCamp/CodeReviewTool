@@ -1,6 +1,5 @@
-set project_working_directory="%~dp0..\..\..\"
-set test_folder="%project_working_directory:"=%\tests"
+@ECHO off
 
-npm install --prefix %test_folder% phantomcss
+npm install --global phantomcss
 
 exit /B
